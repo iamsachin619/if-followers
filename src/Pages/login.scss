@@ -1,0 +1,51 @@
+.social-login {
+	a {
+		display: block;
+		text-decoration: none;
+		display: block;
+		position: relative;
+		text-align: center;
+		color: white;
+		margin-bottom: 10px;
+		&:hover {
+			color: white;
+		}
+		&.facebook {
+			background: #3b5998!important;
+			&:hover {
+				background: darken(#3b5998, 5%)!important;
+			}
+		}
+		&.twitter {
+			background: #1da1f2!important;
+			&:hover {
+				background: darken(#1da1f2, 5%)!important;
+			}
+		}
+		&.google {
+			background: #ea4335!important;
+			&:hover {
+				background: darken(#ea4335, 5%)!important;
+			}
+		}
+	}
+}
+
+.facebook {
+	width: 100%;
+	margin:10px 0px;
+	background: #3b5998!important;}
+
+	.google {
+		width: 100%;
+	margin:10px 0px;
+		background: #ea4335!important;
+		
+	}
+
+	.twitter {
+		width: 100%;
+	margin:10px 0px;
+		background: #1da1f2!important;
+		
+	}
