@@ -14,7 +14,7 @@ export default function Testemonials() {
         <div className="container">
         
           <div className="row justify-content-center">
-      <h2 className="text-white mb-5">Our happy customers</h2>
+      <h2 className="text-white mb-5 text-center">Our happy customers</h2>
             
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               

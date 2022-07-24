@@ -1,5 +1,5 @@
 import React from 'react'
-
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 export default function HeroArea() {
   return (
     <div>
@@ -8,11 +8,11 @@ export default function HeroArea() {
     <div className="row">
       <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <div className="contents">
-          <h2 className="head-title">App, Business &amp; SaaS<br />Landing Page Template</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt dolorum nulla magnam veniam sapiente, fugiat! fuga nesciunt dolorum nulla magnam veniam sapiente, fugiat!</p>
+          <h2 className="head-title">Boost your Social Media engagement & following instantly! </h2>
+          <p>Are you looking for an instant, cheap way to boost your social media presence? <br></br>Our services allow you to add any number of organic followers, likes and comments with just the click of a few buttons.</p>
           <div className="header-button">
-            <a href="#" className="btn btn-common">Download Now</a>
-            <a href="#" className="btn btn-border video-popup">Learn More</a>
+            <a href="#" className="btn btn-common">Get Started</a>
+            <AnchorLink href="#features" offset='50' className="btn btn-border video-popup">Learn More</AnchorLink>
           </div>
         </div>
       </div>

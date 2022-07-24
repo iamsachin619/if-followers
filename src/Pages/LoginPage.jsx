@@ -14,7 +14,7 @@ export default function LoginPage() {
             
           }}
         />
-        <div className="contents order-1   mt-2 py-5 ">
+        <div className="contents order-1   mt-2 py-4 ">
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-md-11">
@@ -50,7 +50,7 @@ export default function LoginPage() {
                       </a>
                     </span>
                   </div>
-                  <div className="d-flex mb-5 align-items-center text-center">
+                  <div className="d-flex mb-4 align-items-center text-center">
                     <label className="control control--checkbox mb-0  mx-auto">
                       <span className="caption text-dark">Not a user yet? <a href="#" className="forgot-pass">
                         SignUp here!

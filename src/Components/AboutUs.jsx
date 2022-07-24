@@ -16,7 +16,7 @@ export default function AboutUs() {
               </div>
               <div className="content">
                 <p>
-                  Praesent imperdiet, tellus et euismod euismod, risus lorem euismod erat, at finibus neque odio quis metus. Donec vulputate arcu quam. Morbi quis tincidunt ligula. Sed rutrum tincidunt pretium. Mauris auctor, purus a pulvinar fermentum, odio dui vehicula lorem, nec pharetra justo risus quis mi. Ut ac ex sagittis, viverra nisl vel, rhoncus odio. 
+                InstaFamous is a platform created for anybody who wants to organically boost their following. Our interconnected global networks of influencers and creators have allowed us to create a large bank of audiences. We incentivize the audiences to engage with the creators that pay us for our services. Build your engagement and following now!  
                 </p>
                 <a href="#" className="btn btn-common mt-3">Read More</a>
               </div>
