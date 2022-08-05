@@ -1,5 +1,6 @@
 
 import './App.css';
+import {useState} from 'react'
 import Navbar from './Components/Navbar';
 import {
 
@@ -15,6 +16,9 @@ import ScrollToTop from './scrollToTop';
 import ProcessPage from './Pages/ProcessPage';
 import Orders from './Pages/Orders';
 function App() {
+
+  const [user, setUser] = useState(null)
+  const [order, setOrder] = useState(null)
   return (
     <div className="App">
      <ScrollToTop>
@@ -23,7 +27,7 @@ function App() {
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/login' element={<LoginPage/>}></Route>
         <Route path='/signup' element={<SignupPage/>}/>
-        <Route path='/main' element={<ProcessPage/>}/>
+        <Route path='/main' element={<ProcessPage setOrder={setOrder} user={user}/>}/>
         <Route path='/orders' element={<Orders/>}/>
      </Routes>
      </ScrollToTop>

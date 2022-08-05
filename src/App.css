@@ -10,3 +10,30 @@
   background-color: white!important;
 }
 
+/* number input */
+.custom-input-number input {
+   
+    text-align: center;
+
+
+  
+}   
+
+.custom-input-number .rs-input-number-btn-group-vertical {
+  display: none;
+}
+
+.price{
+  font-weight: bold;
+  font-size:17px
+}
+
+.total{
+  font-size: 20px;
+}
+
+.btn:disabled{
+  color: gray;
+  background-color:rgb(217, 214, 214);
+  border-color:gray
+}
