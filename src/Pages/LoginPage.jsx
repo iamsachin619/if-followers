@@ -123,7 +123,7 @@ export default function LoginPage({setUser,order}) {
                     — or —
                   </span>
                   <div className="social-login">
-                    <button
+                    {/* <button
                       href="#"
                       className="facebook btn d-flex justify-content-center align-items-center text-red"
                     >
@@ -135,7 +135,7 @@ export default function LoginPage({setUser,order}) {
                       className="twitter btn d-flex justify-content-center align-items-center"
                     >
                       <span className="icon-twitter mr-3" /> Continue with Twitter
-                    </button>
+                    </button> */}
                     <button
                       onClick={e => signGoogle(e)}
                       className="google btn d-flex justify-content-center align-items-center"

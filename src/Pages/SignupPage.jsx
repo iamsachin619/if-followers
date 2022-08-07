@@ -161,13 +161,13 @@ export default function SignupPage({ setUser,order }) {
                     — or —
                   </span>
                   <div className="social-login">
-                    <button
+                    {/* <button
                       href="#"
                       className="facebook btn d-flex justify-content-center align-items-center text-red"
                     >
                       <span className="icon-facebook mr-3" /> Continue with
                       Facebook
-                    </button>
+                    </button> */}
                     {/* <button
                       href="#"
                       className="twitter btn d-flex justify-content-center align-items-center"
