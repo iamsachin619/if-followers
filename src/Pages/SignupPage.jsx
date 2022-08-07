@@ -1,17 +1,85 @@
-import React from 'react'
+import React from "react";
 import Footer from "../Components/Footer";
 import "./login.scss";
-export default function SignupPage() {
+
+import { continueWithGoogle, signUpEmail } from "../Firebase/firebase";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {useToaster , Notification} from 'rsuite'
+export default function SignupPage({ setUser,order }) {
+
+  const toaster = useToaster()
+
+  const navigation = useNavigate()
+
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [cpass, setCpass] = useState("");
+  const [err, setErr] = useState(null);
+
+  const EmailSignUp = async (e) => {
+    e.preventDefault();
+    if (pass === cpass) {
+      if (email !== "" && pass !== "") {
+        console.log({ email, pass, cpass });
+        const res = await signUpEmail(email, pass);
+        console.log(res);
+        if (res.status === true) {
+          //success signup
+
+          setUser({...res.user, ...res.data});
+          toaster.push(message)
+          if(order){
+            navigation('/processPayment')
+          }else{
+            navigation('/main')
+          }
+        } else {
+          setErr(res.error.message);
+          console.log(res.error.message);
+        }
+      } else {
+        setErr("Cannot leave a field blank");
+      }
+    } else {
+      setErr("Password does not match comfirm password");
+    }
+  };
+
+  const signGoogle = async (e) => {
+    e.preventDefault()
+    const res = await continueWithGoogle();
+    console.log({res})
+    if(res.status){
+      setUser({...res.user, ...res.data})
+      toaster.push(message)
+          if(order){
+            navigation('/processPayment')
+          }else{
+            navigation('/main')
+          }
+    }else{
+      setErr('Something went wrong, Please try again!')
+    }
+  }
+
+
+  const message = (
+    <Notification type={'success'} header={'Welcome aboard!!'} closable>
+      <p className="text">
+        Signed up successfully!
+      </p>
+    </Notification>
+  );
   return (
     <div>
-            <div className="d-lg-flex half">
+      <div className="d-lg-flex half">
         <div
           className="bg order-2 "
           style={{
             backgroundImage: 'url("./assets/img/intro-mobile.png)',
             backgroundColor: "pink",
-            width: "100%"
-            
+            width: "100%",
           }}
         />
         <div className="contents order-1   mt-2 py-5 ">
@@ -25,10 +93,17 @@ export default function SignupPage() {
                     consectetur adipisicing.
                   </p>
                 </div>
-                <form action="#" method="post">
+                {err && <p className="text-danger alert alert-danger">{err}</p>}
+                <form>
                   <div className="form-group first">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control" id="username" />
+                    <label htmlFor="username">Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="username"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
                   <div className="form-group last mb-3">
                     <label htmlFor="password">Password</label>
@@ -36,6 +111,8 @@ export default function SignupPage() {
                       type="password"
                       className="form-control"
                       id="password"
+                      value={pass}
+                      onChange={(e) => setPass(e.target.value)}
                     />
                   </div>
                   <div className="form-group last mb-3">
@@ -44,6 +121,8 @@ export default function SignupPage() {
                       type="password"
                       className="form-control"
                       id="password"
+                      value={cpass}
+                      onChange={(e) => setCpass(e.target.value)}
                     />
                   </div>
                   {/* <div className="d-flex mb-5 align-items-center">
@@ -58,22 +137,26 @@ export default function SignupPage() {
                       </a>
                     </span>
                   </div> */}
-             
+
                   <div className="d-flex mb-5 align-items-center text-center">
                     <label className="control control--checkbox mb-0  mx-auto">
-                      <span className="caption text-dark">Already a user? <a href="#" className="forgot-pass">
-                        SignIn here!
-                      </a></span>
-                      
-                    
+                      <span className="caption text-dark">
+                        Already a user?{" "}
+                        <Link to="/login" className="forgot-pass">
+                          SignIn here!
+                        </Link>
+                      </span>
                     </label>
-                    
                   </div>
-                  <input
-                    type="submit"
-                    defaultValue="Log In"
-                    className="btn btn-block btn-primary"
-                  />
+
+                  <button
+                    onClick={(e) => {
+                      EmailSignUp(e);
+                    }}
+                    className="btn btn-block btn-common"
+                  >
+                    Sign Up
+                  </button>
                   <span className="d-block text-center my-4 text-muted">
                     — or —
                   </span>
@@ -85,14 +168,14 @@ export default function SignupPage() {
                       <span className="icon-facebook mr-3" /> Continue with
                       Facebook
                     </button>
-                    <button
+                    {/* <button
                       href="#"
                       className="twitter btn d-flex justify-content-center align-items-center"
                     >
                       <span className="icon-twitter mr-3" /> Continue with Twitter
-                    </button>
+                    </button> */}
                     <button
-                      href="#"
+                      onClick={(e)=>signGoogle(e)}
                       className="google btn d-flex justify-content-center align-items-center"
                     >
                       <span className="icon-google mr-3" /> Continue with Google
@@ -104,7 +187,7 @@ export default function SignupPage() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }

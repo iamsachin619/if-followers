@@ -15,6 +15,7 @@ import SignupPage from './Pages/SignupPage';
 import ScrollToTop from './scrollToTop';
 import ProcessPage from './Pages/ProcessPage';
 import Orders from './Pages/Orders';
+import ProcessPayment from './Pages/ProcessPayment';
 function App() {
 
   const [user, setUser] = useState(null)
@@ -25,10 +26,11 @@ function App() {
 
      <Routes>
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/login' element={<LoginPage/>}></Route>
-        <Route path='/signup' element={<SignupPage/>}/>
-        <Route path='/main' element={<ProcessPage setOrder={setOrder} user={user}/>}/>
-        <Route path='/orders' element={<Orders/>}/>
+        <Route path='/login' element={<LoginPage  setUser={setUser} order={order}/>}></Route>
+        <Route path='/signup' element={<SignupPage setUser={setUser}  order={order}/>}/>
+        <Route path='/main' element={<ProcessPage setOrder={setOrder} user={user} setUser={setUser}/>}/>
+        <Route path='/orders' element={<Orders setUser={setUser}/>}/>
+        <Route path='/processPayment' element={<ProcessPayment/>}/>
      </Routes>
      </ScrollToTop>
     </div>

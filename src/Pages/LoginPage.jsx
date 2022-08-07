@@ -1,7 +1,59 @@
-import React from "react";
+import React,{useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
+import { signInEmail,continueWithGoogle } from "../Firebase/firebase";
 import "./login.scss";
-export default function LoginPage() {
+import {useToaster , Notification} from 'rsuite'
+export default function LoginPage({setUser,order}) {
+
+  const toaster = useToaster()
+  const navigation = useNavigate()
+
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const [err, setErr] = useState(null)
+  const loginEmail = async (e) => {
+    e.preventDefault()
+    const res = await signInEmail(email, pass)
+    console.log(res)
+    if(res.status === true){
+      setUser({...res.user, ...res.data})
+      toaster.push(message)
+      if(order){
+        navigation('/processPayment')
+      }else{
+        navigation('/main')
+      }
+    }else{
+      setErr(res.error.message)
+    }
+  }
+
+
+  const signGoogle = async (e) => {
+    e.preventDefault()
+    const res = await continueWithGoogle();
+    console.log({res})
+    if(res.status){
+      setUser({...res.user, ...res.data})
+      toaster.push(message)
+          if(order){
+            navigation('/processPayment')
+          }else{
+            navigation('/main')
+          }
+    }else{
+      setErr('Something went wrong, Please try again!')
+    }
+  }
+
+  const message = (
+    <Notification type={'success'} header={'Welcome back!'} closable>
+      <p className="text">
+        Logged in successfully.
+      </p>
+    </Notification>
+  );
   return (
     <div>
       <div className="d-lg-flex half">
@@ -25,10 +77,11 @@ export default function LoginPage() {
                     consectetur adipisicing.
                   </p>
                 </div>
-                <form action="#" method="post">
+                {err && <p className="alert alert-danger">{err}</p>}
+                <form >
                   <div className="form-group first">
                     <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control" id="username" />
+                    <input type="text" className="form-control" id="username" value={email} onChange={e => setEmail(e.target.value)}/>
                   </div>
                   <div className="form-group last mb-3">
                     <label htmlFor="password">Password</label>
@@ -36,6 +89,8 @@ export default function LoginPage() {
                       type="password"
                       className="form-control"
                       id="password"
+                      value={pass}
+                      onChange={e => setPass(e.target.value)}
                     />
                   </div>
                   <div className="d-flex mb-5 align-items-center">
@@ -52,19 +107,18 @@ export default function LoginPage() {
                   </div>
                   <div className="d-flex mb-4 align-items-center text-center">
                     <label className="control control--checkbox mb-0  mx-auto">
-                      <span className="caption text-dark">Not a user yet? <a href="#" className="forgot-pass">
+                      <span className="caption text-dark">Not a user yet? <Link to='/signup' className="forgot-pass">
                         SignUp here!
-                      </a></span>
+                      </Link></span>
                       
                     
                     </label>
                     
                   </div>
-                  <input
-                    type="submit"
-                    defaultValue="Log In"
-                    className="btn btn-block btn-primary"
-                  />
+                  <button
+                    onClick={(e)=> {loginEmail(e)}}
+                    className="btn btn-block btn-common"
+                  >Log In</button>
                   <span className="d-block text-center my-4 text-muted">
                     — or —
                   </span>
@@ -83,7 +137,7 @@ export default function LoginPage() {
                       <span className="icon-twitter mr-3" /> Continue with Twitter
                     </button>
                     <button
-                      href="#"
+                      onClick={e => signGoogle(e)}
                       className="google btn d-flex justify-content-center align-items-center"
                     >
                       <span className="icon-google mr-3" /> Continue with Google

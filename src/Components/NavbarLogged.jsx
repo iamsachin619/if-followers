@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import { Link } from 'react-router-dom'
-export default function NavbarLogged() {
+import { Link, useNavigate } from 'react-router-dom'
+export default function NavbarLogged({setUser}) {
+
+  const navigation = useNavigate()
     const [collapseStatus, setCollapsestatus] = useState(false)
   return (
     <div>
@@ -48,18 +50,22 @@ export default function NavbarLogged() {
           </Link >
 
           */}
-          <Link to='/signup' className="btn btn-border ml-2" id='loginBtn' href="#contact" 
-          onMouseEnter={e => {
-            console.log(e.target.style.color)
-            e.target.style.color = ' white'
+          <button className="btn btn-border ml-2" id='loginBtn'
+          onClick={(e)=>{
+            setUser(null)
+            navigation('/')
           }}
-          onMouseLeave={e => {
-            console.log(e.target.style.color)
-            e.target.style.color = '#F63854'
-          }}
+          // onMouseEnter={e => {
+          //   console.log(e.target.style.color)
+          //   e.target.style.color = ' white'
+          // }}
+          // onMouseLeave={e => {
+          //   console.log(e.target.style.color)
+          //   e.target.style.color = '#F63854'
+          // }}
           >
             LogOut
-          </Link > 
+          </button > 
         </li>
         <li className="nav-item">
           

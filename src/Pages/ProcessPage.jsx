@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 
 import { InputNumber, InputGroup , Input, Whisper, Tooltip,useToaster , Notification,Placeholder} from 'rsuite';
 import { useNavigate } from "react-router-dom";
-export default function ProcessPage({setOrder, user}) {
+export default function ProcessPage({setOrder, user, setUser}) {
 
   const navigation = useNavigate()
   const toaster = useToaster();
@@ -40,9 +40,9 @@ export default function ProcessPage({setOrder, user}) {
 
 
   const placeOrder = () => {
-    setOrder({serviceSelected, value})
+    setOrder({serviceSelected, value, profileUrl})
     if(user){
-      navigation('/payment')
+      navigation('/processPayment')
     }else{
       toaster.push(message)
 
@@ -64,7 +64,7 @@ export default function ProcessPage({setOrder, user}) {
       {/* desktop nav */}
       <MediaQuery minDeviceWidth={1224}>
       <div style={{backgroundColor:'#ededed', height:'100vh' , paddingTop:'100px'}}>
-        <NavbarLogged />
+        <NavbarLogged setUser={setUser}/>
 
         {/* inputs */}
         <div className="  mx-auto d-flex flex-column align-items-center py-5"  style={{backgroundColor:'#ffffff',maxWidth:'500px', borderRadius:'20px'}} >
