@@ -1,5 +1,6 @@
 import React from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { Link } from 'react-router-dom'
 export default function HeroArea() {
   return (
     <div>
@@ -11,7 +12,7 @@ export default function HeroArea() {
           <h2 className="head-title">Boost your Social Media engagement & following instantly! </h2>
           <p>Are you looking for an instant, cheap way to boost your social media presence? <br></br>Our services allow you to add any number of organic followers, likes and comments with just the click of a few buttons.</p>
           <div className="header-button">
-            <a href="#" className="btn btn-common">Get Started</a>
+            <Link to="/main" className="btn btn-common">Get Started</Link>
             <AnchorLink href="#features" offset='50' className="btn btn-border video-popup">Learn More</AnchorLink>
           </div>
         </div>
