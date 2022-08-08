@@ -212,7 +212,9 @@ export default function ProcessPage({setOrder, user, setUser}) {
               <p className="total float-right mt-0">Total <span className="price" style={{color: 'black'}}><b>$30</b></span></p>
             </div>
 
-              <button className="btn-common btn w-100 my-2">Place Order</button>
+              <button className="btn-common btn w-100 my-2 " 
+              disabled={checkDisablity() }
+              onClick={placeOrder}>Place Order</button>
           </div>
 
           
